@@ -8,6 +8,9 @@ package com.hpr.hus.udacity_baking_app.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.hpr.hus.udacity_baking_app.R;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
@@ -33,10 +36,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
 
     class RecipeViewHolder extends RecyclerView.ViewHolder{
-
+        TextView listItemView;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
+            listItemView = (TextView) itemView.findViewById(R.id.tv_recipe_item);
         }
     }
 }
