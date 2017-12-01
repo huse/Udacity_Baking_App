@@ -5,7 +5,9 @@ package com.hpr.hus.udacity_baking_app.adapter;
 /**
  * Created by hk640d on 11/30/2017.
  */
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -21,17 +23,25 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     @Override
     public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        Context context = parent.getContext();
+        int layoutIdForListItem = R.layout.recipe_list_item;
+        LayoutInflater inflater = LayoutInflater.from(context);
+        boolean shouldAttachToParentImmediately = false;
+
+        View view = inflater.inflate(layoutIdForListItem, parent, shouldAttachToParentImmediately);
+        RecipeViewHolder viewHolder = new RecipeViewHolder(view);
+
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecipeViewHolder holder, int position) {
-
+        holder.bind(position);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 100;
     }
 
 
@@ -40,7 +50,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
-            listItemView = (TextView) itemView.findViewById(R.id.tv_recipe_item);
+            listItemView =  itemView.findViewById(R.id.tv_recipe_item);
+        }
+        void bind(int listIndex) {
+            listItemView.setText(String.valueOf(listIndex));
         }
     }
 }
