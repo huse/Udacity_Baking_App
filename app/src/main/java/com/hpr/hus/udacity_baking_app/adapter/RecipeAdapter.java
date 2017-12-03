@@ -7,6 +7,7 @@ package com.hpr.hus.udacity_baking_app.adapter;
  */
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,9 @@ import com.hpr.hus.udacity_baking_app.R;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
-
-    public RecipeAdapter(){
-
+    final private ListItemClickListener mOnClickListener;
+    public RecipeAdapter(ListItemClickListener listener){
+        mOnClickListener = listener;
     }
 
     @Override
@@ -45,15 +46,27 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     }
 
 
-    class RecipeViewHolder extends RecyclerView.ViewHolder{
+    class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView listItemView;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
             listItemView =  itemView.findViewById(R.id.tv_recipe_item);
+            itemView.setOnClickListener(this);
+
         }
         void bind(int listIndex) {
             listItemView.setText(String.valueOf(listIndex));
         }
+        @Override
+        public void onClick(View v) {
+            Log.v("kkk", "clicked");
+
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.onListItemClick(clickedPosition);
+        }
+    }
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
     }
 }
