@@ -9,9 +9,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.hpr.hus.udacity_baking_app.adapter.RecipeAdapter;
+import com.hpr.hus.udacity_baking_app.fragments.MasterListRecipeFragment;
 import com.hpr.hus.udacity_baking_app.fragments.RecipeFragments;
 
-public class MainActivity extends AppCompatActivity implements RecipeAdapter.ListItemClickListener{
+public class MainActivity extends AppCompatActivity implements RecipeAdapter.ListItemClickListener, MasterListRecipeFragment.OnRecipeClickListener{
         private RecipeAdapter recipeAdapter;
         private RecyclerView mRecipeList;
     private Toast mToast;
@@ -19,20 +20,22 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Lis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRecipeList = findViewById(R.id.rv_list_recipe);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecipeList.setLayoutManager(layoutManager);
-        recipeAdapter = new RecipeAdapter(this);
-        mRecipeList.setAdapter(recipeAdapter);
 
-        // setting fragment
-        RecipeFragments recipeTextFragment = new RecipeFragments();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.recipe_text_container, recipeTextFragment).commit();
 
-        RecipeFragments recipeVideoFragment = new RecipeFragments();
-        fragmentManager.beginTransaction().add(R.id.recipe_video_container, recipeVideoFragment).commit();
+           /* mRecipeList = findViewById(R.id.rv_list_recipe);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            mRecipeList.setLayoutManager(layoutManager);
+            recipeAdapter = new RecipeAdapter(this);
+            mRecipeList.setAdapter(recipeAdapter);*/
+  if(savedInstanceState == null) {
+            // setting fragment
+            RecipeFragments recipeTextFragment = new RecipeFragments();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().add(R.id.recipe_text_container, recipeTextFragment).commit();
 
+            RecipeFragments recipeVideoFragment = new RecipeFragments();
+            fragmentManager.beginTransaction().add(R.id.recipe_video_container, recipeVideoFragment).commit();
+        }
     }
 
     @Override
@@ -47,5 +50,11 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Lis
         mToast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
 
         mToast.show();
+    }
+
+
+    @Override
+    public void onRecipeSelected(int position) {
+        Toast.makeText(this, "Position clicked = " + position, Toast.LENGTH_SHORT).show();
     }
 }

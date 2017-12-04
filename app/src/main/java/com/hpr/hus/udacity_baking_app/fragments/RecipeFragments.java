@@ -52,7 +52,7 @@ int counter =0;
     }
     @Override
     public void onSaveInstanceState(Bundle currentState) {
-       // Needs implementation
+       // Needs implementation for saving the status in device rotation.
        /*currentState.putIntegerArrayList(IMAGE_ID_LIST, (ArrayList<Integer>) mImageIds);
         currentState.putInt(LIST_INDEX, mListIndex);*/
     }
