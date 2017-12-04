@@ -3,55 +3,50 @@ package com.hpr.hus.udacity_baking_app;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.widget.GridView;
 import android.widget.Toast;
 
-import com.hpr.hus.udacity_baking_app.adapter.RecipeAdapter;
 import com.hpr.hus.udacity_baking_app.fragments.MasterListRecipeFragment;
 import com.hpr.hus.udacity_baking_app.fragments.RecipeFragments;
 
-public class MainActivity extends AppCompatActivity implements RecipeAdapter.ListItemClickListener, MasterListRecipeFragment.OnRecipeClickListener{
-        private RecipeAdapter recipeAdapter;
-        private RecyclerView mRecipeList;
-    private Toast mToast;
+public class MainActivity extends AppCompatActivity implements  MasterListRecipeFragment.OnRecipeClickListener{
+    private boolean mTwoPane;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-           /* mRecipeList = findViewById(R.id.rv_list_recipe);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-            mRecipeList.setLayoutManager(layoutManager);
-            recipeAdapter = new RecipeAdapter(this);
-            mRecipeList.setAdapter(recipeAdapter);*/
-  if(savedInstanceState == null) {
-            // setting fragment
-            RecipeFragments recipeTextFragment = new RecipeFragments();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().add(R.id.recipe_text_container, recipeTextFragment).commit();
+        if(findViewById(R.id.fragments_linear_layout) != null) {
+            // This LinearLayout will only initially exist in the two-pane tablet case
+            mTwoPane = true;
 
-            RecipeFragments recipeVideoFragment = new RecipeFragments();
-            fragmentManager.beginTransaction().add(R.id.recipe_video_container, recipeVideoFragment).commit();
+            // Change the GridView to space out the images more on tablet
+            GridView gridView = (GridView) findViewById(R.id.recipe_grid_view);
+            gridView.setNumColumns(2);
+
+            // Getting rid of the "Next" button that appears on phones for launching a separate activity
+          //  Button nextButton = (Button) findViewById(R.id.next_button);
+          //  nextButton.setVisibility(View.GONE);
+
+            if(savedInstanceState == null) {
+                // In two-pane mode, add initial BodyPartFragments to the screen
+
+
+                RecipeFragments recipeTextFragment = new RecipeFragments();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().add(R.id.recipe_text_container, recipeTextFragment).commit();
+
+                RecipeFragments recipeVideoFragment = new RecipeFragments();
+                fragmentManager.beginTransaction().add(R.id.recipe_video_container, recipeVideoFragment).commit();
+
+            }
+        } else {
+
+            mTwoPane = false;
         }
+
     }
-
-    @Override
-    public void onListItemClick(int clickedItemIndex) {
-        Log.v("jjj", "clicked");
-        if (mToast != null) {
-            mToast.cancel();
-        }
-
-
-        String toastMessage = "Item #" + clickedItemIndex + " clicked.";
-        mToast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
-
-        mToast.show();
-    }
-
 
     @Override
     public void onRecipeSelected(int position) {
