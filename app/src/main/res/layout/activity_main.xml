@@ -3,7 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <LinearLayout
+        android:id="@+id/whole_screen_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_light"
+        android:orientation="horizontal"
+     >
 
     <android.support.v7.widget.RecyclerView
 
@@ -11,8 +17,14 @@
         android:id="@+id/rv_list_recipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/fragments_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical"
+        >
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,9 +33,16 @@
 
 
     </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recipe_video_container"
+        android:scaleType= "centerInside">
 
 
+    </FrameLayout>
 
+    </LinearLayout>
 </FrameLayout>
 
 

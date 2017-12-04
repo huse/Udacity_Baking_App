@@ -9,7 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.hpr.hus.udacity_baking_app.adapter.RecipeAdapter;
-import com.hpr.hus.udacity_baking_app.fragments.RecipeTextFragment;
+import com.hpr.hus.udacity_baking_app.fragments.RecipeFragments;
 
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.ListItemClickListener{
         private RecipeAdapter recipeAdapter;
@@ -26,9 +26,12 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Lis
         mRecipeList.setAdapter(recipeAdapter);
 
         // setting fragment
-        RecipeTextFragment recipeTextFragment = new RecipeTextFragment();
+        RecipeFragments recipeTextFragment = new RecipeFragments();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.recipe_text_container, recipeTextFragment).commit();
+
+        RecipeFragments recipeVideoFragment = new RecipeFragments();
+        fragmentManager.beginTransaction().add(R.id.recipe_video_container, recipeVideoFragment).commit();
 
     }
 
