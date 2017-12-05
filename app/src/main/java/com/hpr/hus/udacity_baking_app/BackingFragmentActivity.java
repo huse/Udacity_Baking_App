@@ -12,7 +12,7 @@ import com.hpr.hus.udacity_baking_app.adapter.RecipeAdapter;
 import com.hpr.hus.udacity_baking_app.fragments.MasterListRecipeFragment;
 import com.hpr.hus.udacity_baking_app.fragments.RecipeFragments;
 
-public class BackingFragmentActivity extends AppCompatActivity implements RecipeAdapter.ListItemClickListener{
+public class BackingFragmentActivity extends AppCompatActivity {
         private RecipeAdapter recipeAdapter;
         private RecyclerView mRecipeList;
     private Toast mToast;
@@ -38,7 +38,7 @@ public class BackingFragmentActivity extends AppCompatActivity implements Recipe
         }
     }
 
-    @Override
+   /* @Override
     public void onListItemClick(int clickedItemIndex) {
         Log.v("jjj", "clicked");
         if (mToast != null) {
@@ -50,7 +50,7 @@ public class BackingFragmentActivity extends AppCompatActivity implements Recipe
         mToast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
 
         mToast.show();
-    }
+    }*/
 
 
 

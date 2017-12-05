@@ -1,5 +1,6 @@
 package com.hpr.hus.udacity_baking_app;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements  MasterListRecipe
             mTwoPane = true;
 
             // Change the GridView to space out the images more on tablet
-            GridView gridView = (GridView) findViewById(R.id.recipe_grid_view);
+            GridView gridView = findViewById(R.id.recipe_grid_view);
             gridView.setNumColumns(2);
 
             // Getting rid of the "Next" button that appears on phones for launching a separate activity
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements  MasterListRecipe
 
             if(savedInstanceState == null) {
                 // In two-pane mode, add initial BodyPartFragments to the screen
-
 
                 RecipeFragments recipeTextFragment = new RecipeFragments();
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -50,6 +50,19 @@ public class MainActivity extends AppCompatActivity implements  MasterListRecipe
 
     @Override
     public void onRecipeSelected(int position) {
+       // if (mTwoPane) {
+            RecipeFragments recipeTextFragment = new RecipeFragments();
+           // FragmentManager fragmentManager = getSupportFragmentManager();
+         //   fragmentManager.beginTransaction().add(R.id.recipe_text_container, recipeTextFragment).commit();
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.recipe_text_container, recipeTextFragment)
+                    .commit();
+     //   }else{
+       //     final Intent intent = new Intent(this, BackingFragmentActivity.class);
+     //       startActivity(intent);
+     //   }
+
         Toast.makeText(this, "Position clicked = " + position, Toast.LENGTH_SHORT).show();
     }
 }
