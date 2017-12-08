@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Udacity_Baking_App</string>
+    <string name="recipe_list_load_error">Error loading one or more recipe!</string>
 </resources>

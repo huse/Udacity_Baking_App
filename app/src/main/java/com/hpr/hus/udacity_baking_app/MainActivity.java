@@ -9,14 +9,14 @@ import android.widget.Toast;
 
 import com.hpr.hus.udacity_baking_app.fragments.MasterListRecipeFragment;
 import com.hpr.hus.udacity_baking_app.fragments.RecipeFragments;
-
+import timber.log.Timber;
 public class MainActivity extends AppCompatActivity implements  MasterListRecipeFragment.OnRecipeClickListener{
     private boolean mTwoPane;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Timber.plant(new Timber.DebugTree());
 
         if(findViewById(R.id.fragments_linear_layout) != null) {
             // This LinearLayout will only initially exist in the two-pane tablet case
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements  MasterListRecipe
 
             }
         } else {
-
+            Timber.plant();
             mTwoPane = false;
         }
 
