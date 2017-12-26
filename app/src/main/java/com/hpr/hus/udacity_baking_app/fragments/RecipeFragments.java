@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hpr.hus.udacity_baking_app.ActivityRecipe;
 import com.hpr.hus.udacity_baking_app.R;
+import com.hpr.hus.udacity_baking_app.adapter.RecipeAdapter;
+import com.hpr.hus.udacity_baking_app.json.ParsingRecipe;
+import com.hpr.hus.udacity_baking_app.json.ParsingSteps;
+import com.hpr.hus.udacity_baking_app.json.RetroJsonBuilder;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by hk640d on 12/3/2017.
@@ -23,6 +33,7 @@ import java.util.ArrayList;
 
 public class RecipeFragments extends Fragment{
 int counter =0;
+    static String ALL_RECIPES="All_Recipes";
    public RecipeFragments(){
 
    }
@@ -34,10 +45,12 @@ int counter =0;
         View rootView = inflater.inflate(R.layout.recipe_text_fragment,container, false);
         final TextView textViewtext = rootView.findViewById( R.id.recipe_fragment_tv);
         Log.v("uuu" , "textview  " + textViewtext);
-
+        RecyclerView recyclerView;
         textViewtext.setText("this is for test");
-
-
+        final RecipeAdapter recipesAdapter =new RecipeAdapter((ActivityRecipe)getActivity());
+      //  recyclerView.setAdapter(recipesAdapter);
+        final RetroJsonBuilder.GetJsonRecipeInterface jsonRecipeInterface = RetroJsonBuilder.RetrieveJson();
+        Call<ArrayList<ParsingRecipe>> recipe = jsonRecipeInterface.getRecipe();
 
 
         textViewtext.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +61,30 @@ int counter =0;
 
             }
         });
+        recipe.enqueue(new Callback<ArrayList<ParsingRecipe>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ParsingRecipe>> call, Response<ArrayList<ParsingRecipe>> response) {
+                Integer statusCode = response.code();
+                Log.v("status code: ", statusCode.toString());
+
+                ArrayList<ParsingRecipe> recipes = response.body();
+
+                Bundle recipesBundle = new Bundle();
+                recipesBundle.putParcelableArrayList(ALL_RECIPES, recipes);
+
+                recipesAdapter.setRecipeData(recipes,getContext());
+                if (idlingResource != null) {
+                    idlingResource.setIdleState(true);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<ParsingSteps>> call, Throwable t) {
+                Log.v("http fail: ", t.getMessage());
+            }
+        });
+
         return rootView;
     }
     @Override

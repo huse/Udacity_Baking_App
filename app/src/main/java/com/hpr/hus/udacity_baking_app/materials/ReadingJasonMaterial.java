@@ -91,5 +91,48 @@ private ReadingJasonMaterial(int recipeID,String recipeName,JSONArray jArrayIngr
 
         return reader;
     }
+   /* private static ReadingJasonMaterial readEntry(JsonReader reader) {
+        Integer id = -1;
+        String recipeName = null;
+        String title = null;
+        String uri = null;
+        String albumArtID = null;
 
+        int  quantity;
+        String measure;
+
+        String description;
+        String videoURL;
+        String composer = null;
+        try {
+            reader.beginObject();
+            while (reader.hasNext()) {
+                String name = reader.nextName();
+                switch (name) {
+                    case "name":
+                        title = reader.nextString();
+                        break;
+                    case "id":
+                        id = reader.nextInt();
+                        break;
+                    case "composer":
+                        composer = reader.nextString();
+                        break;
+                    case "uri":
+                        uri = reader.nextString();
+                        break;
+                    case "albumArtID":
+                        albumArtID = reader.nextString();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            reader.endObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new ReadingJasonMaterial(id, composer, title, uri, albumArtID);
+    }*/
 }

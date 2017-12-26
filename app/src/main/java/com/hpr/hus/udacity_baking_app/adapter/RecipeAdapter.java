@@ -14,10 +14,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hpr.hus.udacity_baking_app.R;
+import com.hpr.hus.udacity_baking_app.json.ParsingRecipe;
+
+import java.util.ArrayList;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
     final private ListItemClickListener mOnClickListener;
+    ArrayList<ParsingRecipe> arrListRecipes;
+    Context mContext;
     public RecipeAdapter(ListItemClickListener listener){
         mOnClickListener = listener;
     }
@@ -63,10 +68,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             Log.v("kkk", "clicked");
 
             int clickedPosition = getAdapterPosition();
-            mOnClickListener.onListItemClick(clickedPosition);
+            mOnClickListener.onListItemClick(arrListRecipes.get(clickedPosition));
         }
     }
     public interface ListItemClickListener {
-        void onListItemClick(int clickedItemIndex);
+        void onListItemClick(ParsingRecipe clickedItemIndex);
+    }
+    public void setRecipeData(ArrayList<ParsingRecipe> recipesIn, Context context) {
+        arrListRecipes = recipesIn;
+        mContext=context;
+        notifyDataSetChanged();
     }
 }
