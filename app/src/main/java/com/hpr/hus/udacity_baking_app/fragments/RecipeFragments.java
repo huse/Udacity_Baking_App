@@ -19,6 +19,7 @@ import com.hpr.hus.udacity_baking_app.R;
 import com.hpr.hus.udacity_baking_app.adapter.RecipeAdapter;
 import com.hpr.hus.udacity_baking_app.json.ParsingRecipe;
 import com.hpr.hus.udacity_baking_app.json.ParsingSteps;
+import com.hpr.hus.udacity_baking_app.json.RecipeIdlingResource;
 import com.hpr.hus.udacity_baking_app.json.RetroJsonBuilder;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ int counter =0;
    public RecipeFragments(){
 
    }
-
+    RecipeIdlingResource idlingResource;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,6 +62,9 @@ int counter =0;
 
             }
         });
+
+        idlingResource = (RecipeIdlingResource)((ActivityRecipe)getActivity()).getIdlingResource();
+
         recipe.enqueue(new Callback<ArrayList<ParsingRecipe>>() {
             @Override
             public void onResponse(Call<ArrayList<ParsingRecipe>> call, Response<ArrayList<ParsingRecipe>> response) {
@@ -80,7 +84,7 @@ int counter =0;
             }
 
             @Override
-            public void onFailure(Call<ArrayList<ParsingSteps>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<ParsingRecipe>> call, Throwable t) {
                 Log.v("http fail: ", t.getMessage());
             }
         });
