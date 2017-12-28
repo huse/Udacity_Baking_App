@@ -12,79 +12,79 @@ import java.util.List;
 
 public class ParsingRecipe implements Parcelable {
 
-    private Integer id;
-    private String name;
-    private List<ParsingIngredients> ingredients = null;
-    private List<ParsingSteps> steps = null;
-    private Integer servings;
-    private String image;
+    private Integer idInt;
+    private String nameRecipe;
+    private List<ParsingIngredients> ingredientsList = null;
+    private List<ParsingSteps> stepsList = null;
+    private Integer servingsInt;
+    private String images;
 
     public Integer getId() {
-        return id;
+        return idInt;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.idInt = id;
     }
 
     public String getName() {
-        return name;
+        return nameRecipe;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nameRecipe = name;
     }
 
-    public List<ParsingIngredients> getIngredients() {
-        return ingredients;
+   /* public List<ParsingIngredients> getIngredientsList() {
+        return ingredientsList;
     }
 
-    public void setIngredients(List<ParsingIngredients> ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredientsList(List<ParsingIngredients> ingredientsList) {
+        this.ingredientsList = ingredientsList;
     }
 
-    public List<ParsingSteps> getSteps() {
-        return steps;
+    public List<ParsingSteps> getStepsList() {
+        return stepsList;
     }
 
-    public void setSteps(List<ParsingSteps> steps) {
-        this.steps = steps;
+    public void setStepsList(List<ParsingSteps> stepsList) {
+        this.stepsList = stepsList;
     }
 
-    public Integer getServings() {
-        return servings;
+    public Integer getServingsInt() {
+        return servingsInt;
     }
 
-    public void setServings(Integer servings) {
-        this.servings = servings;
+    public void setServingsInt(Integer servingsInt) {
+        this.servingsInt = servingsInt;
     }
 
-    public String getImage() {
-        return image;
+    public String getImages() {
+        return images;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+    public void setImages(String images) {
+        this.images = images;
+    }*/
 
 
     protected ParsingRecipe(Parcel in) {
-        id = in.readByte() == 0x00 ? null : in.readInt();
-        name = in.readString();
+        idInt = in.readByte() == 0x00 ? null : in.readInt();
+        nameRecipe = in.readString();
         if (in.readByte() == 0x01) {
-            ingredients = new ArrayList<>();
-            in.readList(ingredients, ParsingIngredients.class.getClassLoader());
+            ingredientsList = new ArrayList<>();
+            in.readList(ingredientsList, ParsingIngredients.class.getClassLoader());
         } else {
-            ingredients = null;
+            ingredientsList = null;
         }
         if (in.readByte() == 0x01) {
-            steps = new ArrayList<>();
-            in.readList(steps, ParsingSteps.class.getClassLoader());
+            stepsList = new ArrayList<>();
+            in.readList(stepsList, ParsingSteps.class.getClassLoader());
         } else {
-            steps = null;
+            stepsList = null;
         }
-        servings = in.readByte() == 0x00 ? null : in.readInt();
-        image = in.readString();
+        servingsInt = in.readByte() == 0x00 ? null : in.readInt();
+        images = in.readString();
     }
 
     @Override
@@ -94,35 +94,35 @@ public class ParsingRecipe implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (id == null) {
+        if (idInt == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
-            dest.writeInt(id);
+            dest.writeInt(idInt);
         }
-        dest.writeString(name);
-        if (ingredients == null) {
+        dest.writeString(nameRecipe);
+        if (ingredientsList == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
-            dest.writeList(ingredients);
+            dest.writeList(ingredientsList);
         }
-        if (steps == null) {
+        if (stepsList == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
-            dest.writeList(steps);
+            dest.writeList(stepsList);
         }
-        if (servings == null) {
+        if (servingsInt == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
-            dest.writeInt(servings);
+            dest.writeInt(servingsInt);
         }
-        dest.writeString(image);
+        dest.writeString(images);
     }
 
-    @SuppressWarnings("unused")
+
     public static final Parcelable.Creator<ParsingRecipe> CREATOR = new Parcelable.Creator<ParsingRecipe>() {
         @Override
         public ParsingRecipe createFromParcel(Parcel in) {

@@ -5,8 +5,6 @@ package com.hpr.hus.udacity_baking_app.materials;
  */
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.JsonReader;
 import android.widget.Toast;
@@ -23,43 +21,43 @@ import org.json.JSONArray;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class ReadingJasonMaterial {
 
-    private int mRecipeID;
-    private String mRecipeName;
-    private JSONArray mJArrayIngredients;
-    private int mQuantity;
-    private String mMeasure;
-    private String mIngredient;
+    private String mVideoURLstr;
+    private String mThumbnailURLstr;
+    private int mServingint;
+    private int mRecipeIDs;
+
+    private int mQuantityInt;
+    private String mMeasurement;
+    private String mIngredients;
     private JSONArray mJArraySteps;
-    private int mStepID;
-    private String mShortDescription;
-    private String mDescription;
-    private String mVideoURL;
-    private String mThumbnailURL;
-    private int mServing;
-    private String mImage;
+    private int mStepIDint;
+    private String mShortDescriptions;
+    private String mDescriptions;
+    private String mRecipeNames;
+    private JSONArray mJArrayIngredients;
+    private String mImages;
 
 private ReadingJasonMaterial(int recipeID,String recipeName,JSONArray jArrayIngredients,int quantity,
                              String measure, String ingredient, JSONArray jArraySteps, int stepID, String shortDescription ,String description
                              , String videoURL, String thumbnailURL, int serving, String image ){
 
-    mRecipeID = recipeID;
-    mRecipeName = recipeName;
+    mRecipeIDs = recipeID;
+    mRecipeNames = recipeName;
     mJArrayIngredients = jArrayIngredients;
-    mQuantity = quantity;
-    mMeasure = measure;
-    mIngredient = ingredient;
+    mQuantityInt = quantity;
+    mMeasurement = measure;
+    mIngredients = ingredient;
     mJArraySteps = jArraySteps;
-    mStepID = stepID;
-    mShortDescription = shortDescription;
-    mDescription = description;
-    mVideoURL = videoURL;
-    mThumbnailURL = thumbnailURL;
-    mServing = serving;
-    mImage = image;
+    mStepIDint = stepID;
+    mShortDescriptions = shortDescription;
+    mDescriptions = description;
+    mVideoURLstr = videoURL;
+    mThumbnailURLstr = thumbnailURL;
+    mServingint = serving;
+    mImages = image;
 
 }
     private static JsonReader readJSONFile(Context context) throws IOException {

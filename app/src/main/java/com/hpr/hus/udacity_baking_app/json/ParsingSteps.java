@@ -9,59 +9,59 @@ import android.os.Parcelable;
 
 public class ParsingSteps  implements Parcelable {
 
-    private Integer id;
-    private String shortDescription;
-    private String description;
-    private String videoURL;
-    private String thumbnailURL;
+    private Integer idInt;
+    private String shortDescriptions;
+    private String descriptionStr;
+    private String videoURLstr;
+    private String thumbnailURLstr;
 
     public Integer getId() {
-        return id;
+        return idInt;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.idInt = id;
     }
 
-    public String getShortDescription() {
-        return shortDescription;
+    /*public String getShortDescriptions() {
+        return shortDescriptions;
     }
 
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
+    public void setShortDescriptions(String shortDescriptions) {
+        this.shortDescriptions = shortDescriptions;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptionStr() {
+        return descriptionStr;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptionStr(String descriptionStr) {
+        this.descriptionStr = descriptionStr;
     }
 
-    public String getVideoURL() {
-        return videoURL;
+    public String getVideoURLstr() {
+        return videoURLstr;
     }
 
-    public void setVideoURL(String videoURL) {
-        this.videoURL = videoURL;
+    public void setVideoURLstr(String videoURLstr) {
+        this.videoURLstr = videoURLstr;
     }
 
-    public String getThumbnailURL() {
-        return thumbnailURL;
+    public String getThumbnailURLstr() {
+        return thumbnailURLstr;
     }
 
-    public void setThumbnailURL(String thumbnailURL) {
-        this.thumbnailURL = thumbnailURL;
-    }
+    public void setThumbnailURLstr(String thumbnailURLstr) {
+        this.thumbnailURLstr = thumbnailURLstr;
+    }*/
 
 
     protected ParsingSteps(Parcel in) {
-        id = in.readByte() == 0x00 ? null : in.readInt();
-        shortDescription = in.readString();
-        description = in.readString();
-        videoURL = in.readString();
-        thumbnailURL = in.readString();
+        idInt = in.readByte() == 0x00 ? null : in.readInt();
+        shortDescriptions = in.readString();
+        descriptionStr = in.readString();
+        videoURLstr = in.readString();
+        thumbnailURLstr = in.readString();
     }
 
     @Override
@@ -71,19 +71,19 @@ public class ParsingSteps  implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (id == null) {
+        if (idInt == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
-            dest.writeInt(id);
+            dest.writeInt(idInt);
         }
-        dest.writeString(shortDescription);
-        dest.writeString(description);
-        dest.writeString(videoURL);
-        dest.writeString(thumbnailURL);
+        dest.writeString(shortDescriptions);
+        dest.writeString(descriptionStr);
+        dest.writeString(videoURLstr);
+        dest.writeString(thumbnailURLstr);
     }
 
-    @SuppressWarnings("unused")
+
     public static final Parcelable.Creator<ParsingSteps> CREATOR = new Parcelable.Creator<ParsingSteps>() {
         @Override
         public ParsingSteps createFromParcel(Parcel in) {

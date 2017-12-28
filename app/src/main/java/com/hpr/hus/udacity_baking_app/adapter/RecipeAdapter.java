@@ -56,7 +56,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
-            listItemView =  itemView.findViewById(R.id.tv_recipe_item);
+            listItemView =  (TextView) itemView.findViewById(R.id.tv_recipe_item);
             itemView.setOnClickListener(this);
 
         }

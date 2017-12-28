@@ -15,7 +15,7 @@ import retrofit2.http.GET;
 
 public class RetroJsonBuilder {
 
-    static GetJsonRecipeInterface jsonRecipe;
+    static GetJsonRecipeInterface jsonRecipes;
 
     public static GetJsonRecipeInterface RetrieveJson() {
 
@@ -24,14 +24,14 @@ public class RetroJsonBuilder {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
 
 
-        jsonRecipe = new Retrofit.Builder()
+        jsonRecipes = new Retrofit.Builder()
                 .baseUrl("https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .callFactory(httpClientBuilder.build())
                 .build().create(GetJsonRecipeInterface.class);
 
 
-        return jsonRecipe;
+        return jsonRecipes;
     }
 
     public interface GetJsonRecipeInterface {

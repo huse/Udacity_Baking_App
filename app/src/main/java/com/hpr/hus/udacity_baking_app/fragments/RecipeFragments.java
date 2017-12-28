@@ -44,7 +44,7 @@ int counter =0;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.recipe_text_fragment,container, false);
-        final TextView textViewtext = rootView.findViewById( R.id.recipe_fragment_tv);
+        final TextView textViewtext = (TextView) rootView.findViewById( R.id.recipe_fragment_tv);
         Log.v("uuu" , "textview  " + textViewtext);
         RecyclerView recyclerView;
         textViewtext.setText("this is for test");

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements  MasterListRecipe
             mTwoPane = true;
 
             // Change the GridView to space out the images more on tablet
-            GridView gridView = findViewById(R.id.recipe_grid_view);
+            GridView gridView = (GridView) findViewById(R.id.recipe_grid_view);
             gridView.setNumColumns(2);
 
             // Getting rid of the "Next" button that appears on phones for launching a separate activity

@@ -9,39 +9,39 @@ import android.os.Parcelable;
 
 public class ParsingIngredients  implements Parcelable {
 
-    private Double quantity;
-    private String measure;
-    private String ingredient;
+    private Double quantities;
+    private String measures;
+    private String ingredients;
 
-    public Double getQuantity() {
-        return quantity;
+    public Double getQuantities() {
+        return quantities;
     }
 
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
+    public void setQuantities(Double quantities) {
+        this.quantities = quantities;
     }
 
-    public String getMeasure() {
-        return measure;
+    public String getMeasures() {
+        return measures;
     }
 
-    public void setMeasure(String measure) {
-        this.measure = measure;
+    public void setMeasures(String measures) {
+        this.measures = measures;
     }
 
-    public String getIngredient() {
-        return ingredient;
+    public String getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
 
 
     protected ParsingIngredients(Parcel in) {
-        quantity = in.readByte() == 0x00 ? null : in.readDouble();
-        measure = in.readString();
-        ingredient = in.readString();
+        quantities = in.readByte() == 0x00 ? null : in.readDouble();
+        measures = in.readString();
+        ingredients = in.readString();
     }
 
     @Override
@@ -51,14 +51,16 @@ public class ParsingIngredients  implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (quantity == null) {
+        if (quantities == null) {
             dest.writeByte((byte) (0x00));
         } else {
+            dest.writeDouble(quantities);
             dest.writeByte((byte) (0x01));
-            dest.writeDouble(quantity);
+
         }
-        dest.writeString(measure);
-        dest.writeString(ingredient);
+        dest.writeString(ingredients);
+        dest.writeString(measures);
+
     }
 
     @SuppressWarnings("unused")

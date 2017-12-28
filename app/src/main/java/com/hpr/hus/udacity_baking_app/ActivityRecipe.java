@@ -47,7 +47,7 @@ public class ActivityRecipe extends AppCompatActivity implements RecipeAdapter.L
 
         setContentView(R.layout.activity_recipe);
 
-        Toolbar myToolbar =  findViewById(R.id.my_toolbar);
+        Toolbar myToolbar =  (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setHomeButtonEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
