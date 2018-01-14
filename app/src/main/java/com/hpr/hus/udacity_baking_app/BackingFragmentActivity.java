@@ -13,9 +13,9 @@ import com.hpr.hus.udacity_baking_app.fragments.MasterListRecipeFragment;
 import com.hpr.hus.udacity_baking_app.fragments.RecipeFragments;
 
 public class BackingFragmentActivity extends AppCompatActivity {
-        private RecipeAdapter recipeAdapter;
-        private RecyclerView mRecipeList;
-    private Toast mToast;
+       // private RecipeAdapter recipeAdapter;
+     //   private RecyclerView mRecipeList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

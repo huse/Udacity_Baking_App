@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.hpr.hus.udacity_baking_app.R;
-import com.hpr.hus.udacity_baking_app.adapter.MasterListRecipeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,14 +57,14 @@ public class MasterListRecipeFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.master_frament_list, container, false);
 
         // Get a reference to the GridView in the fragment_master_list xml layout file
-        GridView gridView = (GridView) rootView.findViewById(R.id.recipe_grid_view);
+        GridView gridView = (GridView) rootView.findViewById(R.id.master_fragment_recipe_grid_view);
 
         // Create the adapter
         // This adapter takes in the context and an ArrayList of ALL the image resources to display
-        MasterListRecipeAdapter mAdapter = new MasterListRecipeAdapter(getContext(), all);
+        //MasterListRecipeAdapter mAdapter = new MasterListRecipeAdapter(getContext(), all);
 
         // Set the adapter on the GridView
-        gridView.setAdapter(mAdapter);
+       // gridView.setAdapter(mAdapter);
 
         // Set a click listener on the gridView and trigger the callback onImageSelected when an item is clicked
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -75,6 +74,12 @@ public class MasterListRecipeFragment extends Fragment {
                 mCallback.onRecipeSelected(position);
             }
         });
+       /* final TextView textViewtext = (TextView) rootView.findViewById( R.id.recipe_fragment_tv);
+        RecyclerView recyclerView;
+        recyclerView=(RecyclerView)  rootView.findViewById(R.id.recipe_recyclerview);
+        textViewtext.setText("this is for test");
+        final RecipeAdapter recipesAdapter =new RecipeAdapter((MainActivity)getActivity());*/
+
 
         // Return the root view
         return rootView;

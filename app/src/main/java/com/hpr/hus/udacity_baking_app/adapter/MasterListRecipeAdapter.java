@@ -46,12 +46,10 @@ public class MasterListRecipeAdapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
         TextView textView;
         if (convertView == null) {
-            // If the view is not recycled, this creates a new ImageView to hold an image
+
             textView = new TextView(mContext);
-            // Define the layout parameters
-           // textView.setAdjustViewBounds(true);
-          //  textView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            textView.setPadding(8, 8, 8, 8);
+
+            textView.setPadding(16, 16, 16, 16);
         } else {
             textView = (TextView) convertView;
         }

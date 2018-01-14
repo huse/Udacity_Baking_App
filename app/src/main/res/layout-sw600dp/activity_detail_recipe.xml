@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recipe_detail_linear_layout"
+    android:tag="tablet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    android:gravity="center_horizontal">
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <FrameLayout
+            android:id="@+id/FRAGMENT_CONTAINER_ONE"
+            android:layout_width="300dp"
+            android:scaleType="centerInside"
+            android:layout_height="match_parent" >
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FRAGMENT_CONTAINER_TWO"
+            android:scaleType="centerInside"
+            android:layout_margin="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="25dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+

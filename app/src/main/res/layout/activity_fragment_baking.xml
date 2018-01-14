@@ -6,7 +6,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.hpr.hus.udacity_baking_app.BackingFragmentActivity">
 <LinearLayout
-    android:id="@+id/fragments_linear_layout"
+    android:id="@+id/fragments_baking_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/darker_gray"

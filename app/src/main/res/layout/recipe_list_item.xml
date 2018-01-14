@@ -4,13 +4,14 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tv_recipe_item"
+        android:id="@+id/tv_recipe_list_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Recipe list"
         android:textSize="20sp"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_gravity="center_vertical|start"
+
 
         />
 </FrameLayout>

@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/master_list_fragment"
-    android:name="com.hpr.hus.udacity_baking_app.fragments.MasterListRecipeFragment"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recipe_detail_linear_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:shadowColor="@color/colorAccent"
+    android:textColor="@color/colorAccent"
+    android:textColorHighlight="@color/colorAccent"
+    android:textColorHint="@color/colorAccent"
+    android:textColorLink="@color/colorAccent"
+>
+
+
+
+    <fragment
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recipe_fragment_main_activity"
+        android:name="com.hpr.hus.udacity_baking_app.fragments.RecipeFragments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shadowColor="@color/colorAccent"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent" />
+
+</LinearLayout>
