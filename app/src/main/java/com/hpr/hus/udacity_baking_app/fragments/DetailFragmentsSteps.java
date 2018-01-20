@@ -32,7 +32,6 @@ import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-import com.hpr.hus.udacity_baking_app.DetailActivityForRecipe;
 import com.hpr.hus.udacity_baking_app.R;
 
 import com.hpr.hus.udacity_baking_app.graphic.RecipeDetailActivity;
@@ -137,8 +136,8 @@ public class DetailFragmentsSteps extends Fragment {
         String videoURL = stepsArrList.get(index).getVideoURL();
 
         if (view.findViewWithTag("port_step_detail")!=null) {
-            nammeForRecipe =((DetailActivityForRecipe) getActivity()).recipeName;
-            ((DetailActivityForRecipe) getActivity()).getSupportActionBar().setTitle(nammeForRecipe);
+            nammeForRecipe =((RecipeDetailActivity) getActivity()).nameOfRecipe;
+            ((RecipeDetailActivity) getActivity()).getSupportActionBar().setTitle(nammeForRecipe);
         }
 
         String imageUrl=stepsArrList.get(index).getThumbnailURL();

@@ -32,7 +32,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesAd
 
 
     private ArrayList<ParsingRecipe> recipeArrList;
-    String nameOfRecipe;
+    public String nameOfRecipe;
 
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);

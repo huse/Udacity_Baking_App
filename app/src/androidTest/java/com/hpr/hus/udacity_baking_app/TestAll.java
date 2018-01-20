@@ -54,14 +54,15 @@ public class TestAll {
     @Test
     public void allInteractionTest() {
         onView(withId(R.id.recipe_fragment_main_activity)).check(matches(isDisplayed()));
+        onView(withId(R.id.fragment_recipe_recyclerview_)).check(matches(isDisplayed()));
+        onView(withId(R.id.fragment_recipe_recyclerview_))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        intended(hasComponent(RecipeDetailActivity.class.getName()));
         onView(withId(R.id.recycler_view_recipe_detail)).check(matches(isDisplayed()));
         onView(withId(R.id.recycler_view_recipe_detail))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
-        intended(hasComponent(RecipeDetailActivity.class.getName()));
         onView(withId(R.id.steps_detail_text2)).check(matches(isDisplayed()));
 
-        onView(withId(R.id.fragment_recipe_recyclerview_))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
 
     }
