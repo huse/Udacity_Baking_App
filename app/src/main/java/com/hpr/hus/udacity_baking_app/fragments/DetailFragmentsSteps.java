@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
@@ -42,6 +43,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.prefs.AbstractPreferences;
 
 /**
  * Created by hk640d on 12/30/2017.
@@ -62,7 +64,9 @@ public class DetailFragmentsSteps extends Fragment {
 
     private SimpleExoPlayerView exoPlayerView;
     private SimpleExoPlayer exoPlayer;
-
+    private long playerPosition;
+    private AbstractPreferences outState;
+    boolean isPlayWhenReady;
     public DetailFragmentsSteps() {
 
     }
@@ -77,7 +81,16 @@ public class DetailFragmentsSteps extends Fragment {
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         TextView textView;
         TextView textView2;
+        if (exoPlayer != null) {
+            Log.v("hhh35", "exoPlayer != null  " + playerPosition);
+            exoPlayer.seekTo(playerPosition);
 
+
+        }
+
+        Log.v("hhh30", "playerPosition:  " + playerPosition);
+
+       // playerPosition = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
         mainHandler = new Handler();
         bandWidthMeter = new DefaultBandwidthMeter();
 
@@ -90,6 +103,8 @@ public class DetailFragmentsSteps extends Fragment {
             index = bundle.getInt(INDEX_SELECTED);
             nammeForRecipe = bundle.getString("Title");
             Log.v("jjjStepsF11", "  " + "bundle != null");
+            playerPosition = exoPlayer.getCurrentPosition();
+            Log.v("hhh38", "bundle != null: " +playerPosition);
 
 
         }
@@ -166,7 +181,6 @@ public class DetailFragmentsSteps extends Fragment {
             exoPlayerView.setLayoutParams(new LinearLayout.LayoutParams(350, 350));
         }
 
-
         Button mPrevStep = (Button) view.findViewById(R.id.previous_step_button);
         Button mNextstep = (Button) view.findViewById(R.id.next_step_button);
 
@@ -238,6 +252,11 @@ public class DetailFragmentsSteps extends Fragment {
         currentState.putParcelableArrayList(STEPS_SELECTED,stepsArrList);
         currentState.putInt(INDEX_SELECTED, index);
         currentState.putString("Title", nammeForRecipe);
+        playerPosition = exoPlayer.getCurrentPosition();
+        Log.v("hhh33", "onSaveInstanceState: " +playerPosition);
+        isPlayWhenReady = exoPlayer.getPlayWhenReady();
+        outState.putBoolean("playstate", isPlayWhenReady);
+       // currentState.putLong(SELECTED_POSITION, playerPosition);
     }
 
     public boolean isInLandscapeMode( Context context ) {
@@ -248,44 +267,64 @@ public class DetailFragmentsSteps extends Fragment {
         super.onPause();
         if (exoPlayer !=null) {
             exoPlayer.stop();
+            playerPosition = exoPlayer.getCurrentPosition();
+            Log.v("hhh36", "onPause: " + playerPosition);
+
             exoPlayer.release();
         }
     }
-    @Override
+    /*@Override
     public void onDetach() {
         super.onDetach();
         if (exoPlayer !=null) {
             exoPlayer.stop();
             exoPlayer.release();
         }
-    }
+    }*/
 
 
 
     @Override
     public void onStop() {
         super.onStop();
+        Log.v("hhh36", "onStop: " + playerPosition);
+
         if (exoPlayer !=null) {
             exoPlayer.stop();
             exoPlayer.release();
+            playerPosition = exoPlayer.getCurrentPosition();
+
         }
     }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Log.v("hhh36", "onDestroyView: " + playerPosition);
+
         if (exoPlayer !=null) {
             exoPlayer.stop();
-            exoPlayer.release();
-            exoPlayer =null;
+            playerPosition = exoPlayer.getCurrentPosition();
+
+
+
         }
     }
+    @Override
+    public void onResume() {
+        Log.v("hhh34", "onResume:  " + playerPosition);
+        super.onResume();
+        if (exoPlayer != null) {
+            Log.v("hhh35", "exoPlayer != null  " + playerPosition);
+            if (playerPosition != C.TIME_UNSET) exoPlayer.seekTo(playerPosition);
+            exoPlayer.setPlayWhenReady(isPlayWhenReady);
 
+        }
+    }
     private void initializePlayer(Uri mediaUri) {
         if (exoPlayer == null) {
             TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveVideoTrackSelection.Factory(bandWidthMeter);
 
             DefaultTrackSelector trackSelector = new DefaultTrackSelector();
-            //   DefaultTrackSelector trackSelector = new DefaultTrackSelector(mainHandler, videoTrackSelectionFactory);
             LoadControl loadControl = new DefaultLoadControl();
 
             exoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector, loadControl);
@@ -293,6 +332,11 @@ public class DetailFragmentsSteps extends Fragment {
 
             String userAgent = Util.getUserAgent(getContext(), "Baking Udacity Application");
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(getContext(), userAgent), new DefaultExtractorsFactory(), null, null);
+            Log.v("hhh40", "initializePlayer  " + playerPosition);
+
+            if (playerPosition != C.TIME_UNSET) exoPlayer.seekTo(playerPosition);
+            Log.v("hhh41", "initializePlayer  " + playerPosition);
+
             exoPlayer.prepare(mediaSource);
             exoPlayer.setPlayWhenReady(true);
         }

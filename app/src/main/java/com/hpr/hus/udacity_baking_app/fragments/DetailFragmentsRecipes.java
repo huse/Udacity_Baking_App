@@ -40,6 +40,9 @@ public class DetailFragmentsRecipes  extends Fragment {
         bundle.putParcelableArrayList(RECIPE_SELECTED, recipeArrayList);
 
         bundle.putString("Title", nameOfRecipe);
+        Log.v("hhh22", "onSaveInstanceState: DetailFragmentsRecipes");
+
+
     }
 
     @Override
