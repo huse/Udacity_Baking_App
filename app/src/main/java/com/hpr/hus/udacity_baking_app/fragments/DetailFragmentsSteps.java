@@ -99,36 +99,39 @@ public class DetailFragmentsSteps extends Fragment {
 
 
         if(bundle != null) {
+            Log.v("jjjStepsF11", "  " + "bundle != null");
+
             stepsArrList = bundle.getParcelableArrayList(STEPS_SELECTED);
             index = bundle.getInt(INDEX_SELECTED);
             nammeForRecipe = bundle.getString("Title");
-            Log.v("jjjStepsF11", "  " + "bundle != null");
-            if (exoPlayer != null) {
-                playerPosition = exoPlayer.getCurrentPosition();
-                Log.v("hhh38", "bundle != null: " + playerPosition);
-            }
+            playerPosition = bundle.getLong("playPosition");
+            Log.v("hhhStepsF11", "  " + "bundle != null  playerPosition" + playerPosition);
+
+            isPlayWhenReady = bundle.getBoolean("playState");
+            Log.v("hhhStepsF11", "  " + "bundle != null  isPlayWhenReady" + isPlayWhenReady);
+
 
         }
         else {
-            Log.v("jjjStepsF12", "  " + "bundle != null");
+            Log.v("hhhStepsF12", "  " + "bundle != null");
 
             stepsArrList =getArguments().getParcelableArrayList(STEPS_SELECTED);
             recipe =getArguments().getParcelableArrayList(RECIPE_SELECTED);
 
             if (stepsArrList!=null) {
-                Log.v("jjjStepsF13", "  " + "bundle != null");
-                Log.v("jjjStepsF13", "steps before  " + stepsArrList );
+                Log.v("hhhStepsF13", "  " + "bundle != null");
+                Log.v("hhhStepsF13", "steps before  " + stepsArrList );
                 stepsArrList =getArguments().getParcelableArrayList(STEPS_SELECTED);
                 index =getArguments().getInt(INDEX_SELECTED);
                 nammeForRecipe =getArguments().getString("Title");
                 recipe =getArguments().getParcelableArrayList(RECIPE_SELECTED);
-                Log.v("jjjStepsF13", "steps  " + stepsArrList );
-                Log.v("jjjStepsF13", "recipe  " + recipe);
+                Log.v("hhhStepsF13", "steps  " + stepsArrList );
+                Log.v("hhhStepsF13", "recipe  " + recipe);
 
 
             }
             else {
-                Log.v("jjjStepsF14", "  " + "bundle != null");
+                Log.v("hhhStepsF14", "  " + "bundle == null");
 
                 recipe =getArguments().getParcelableArrayList(RECIPE_SELECTED);
                 //casting List to ArrayList
@@ -256,9 +259,18 @@ public class DetailFragmentsSteps extends Fragment {
         if(exoPlayer != null){
         playerPosition = exoPlayer.getCurrentPosition();
         Log.v("hhh33", "onSaveInstanceState: " +playerPosition);
-        isPlayWhenReady = exoPlayer.getPlayWhenReady();}
-        currentState.putBoolean("playstate", isPlayWhenReady);
-        currentState.putLong("playstate", playerPosition);
+        isPlayWhenReady = exoPlayer.getPlayWhenReady();
+        Log.v("hhh33", "onSaveInstanceState: " +isPlayWhenReady);
+        }
+        currentState.putLong("playPosition", playerPosition);
+        currentState.putBoolean("playState", isPlayWhenReady);
+        playerPosition = currentState.getLong("playPosition");
+        isPlayWhenReady = currentState.getBoolean("playState");
+
+        Log.v("hhh33", "  " + "onSaveInstanceState  playerPosition " + playerPosition);
+
+        Log.v("hhh33", "  " + "onSaveInstanceState  isPlayWhenReady " + isPlayWhenReady);
+
     }
 
     public boolean isInLandscapeMode( Context context ) {
