@@ -252,10 +252,11 @@ public class DetailFragmentsSteps extends Fragment {
         currentState.putParcelableArrayList(STEPS_SELECTED,stepsArrList);
         currentState.putInt(INDEX_SELECTED, index);
         currentState.putString("Title", nammeForRecipe);
+        if(exoPlayer != null){
         playerPosition = exoPlayer.getCurrentPosition();
         Log.v("hhh33", "onSaveInstanceState: " +playerPosition);
-        isPlayWhenReady = exoPlayer.getPlayWhenReady();
-        outState.putBoolean("playstate", isPlayWhenReady);
+        isPlayWhenReady = exoPlayer.getPlayWhenReady();}
+//        outState.putBoolean("playstate", isPlayWhenReady);
        // currentState.putLong(SELECTED_POSITION, playerPosition);
     }
 
