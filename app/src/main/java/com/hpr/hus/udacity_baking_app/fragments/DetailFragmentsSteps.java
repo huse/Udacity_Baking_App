@@ -65,7 +65,7 @@ public class DetailFragmentsSteps extends Fragment {
     private SimpleExoPlayerView exoPlayerView;
     private SimpleExoPlayer exoPlayer;
     private long playerPosition;
-    private AbstractPreferences outState;
+
     boolean isPlayWhenReady;
     public DetailFragmentsSteps() {
 
@@ -103,9 +103,10 @@ public class DetailFragmentsSteps extends Fragment {
             index = bundle.getInt(INDEX_SELECTED);
             nammeForRecipe = bundle.getString("Title");
             Log.v("jjjStepsF11", "  " + "bundle != null");
-            playerPosition = exoPlayer.getCurrentPosition();
-            Log.v("hhh38", "bundle != null: " +playerPosition);
-
+            if (exoPlayer != null) {
+                playerPosition = exoPlayer.getCurrentPosition();
+                Log.v("hhh38", "bundle != null: " + playerPosition);
+            }
 
         }
         else {
@@ -256,8 +257,8 @@ public class DetailFragmentsSteps extends Fragment {
         playerPosition = exoPlayer.getCurrentPosition();
         Log.v("hhh33", "onSaveInstanceState: " +playerPosition);
         isPlayWhenReady = exoPlayer.getPlayWhenReady();}
-//        outState.putBoolean("playstate", isPlayWhenReady);
-       // currentState.putLong(SELECTED_POSITION, playerPosition);
+        currentState.putBoolean("playstate", isPlayWhenReady);
+        currentState.putLong("playstate", playerPosition);
     }
 
     public boolean isInLandscapeMode( Context context ) {
@@ -271,7 +272,7 @@ public class DetailFragmentsSteps extends Fragment {
             playerPosition = exoPlayer.getCurrentPosition();
             Log.v("hhh36", "onPause: " + playerPosition);
 
-            exoPlayer.release();
+           // exoPlayer.release();
         }
     }
     /*@Override
@@ -285,7 +286,7 @@ public class DetailFragmentsSteps extends Fragment {
 
 
 
-    @Override
+  /*  @Override
     public void onStop() {
         super.onStop();
         Log.v("hhh36", "onStop: " + playerPosition);
@@ -309,7 +310,7 @@ public class DetailFragmentsSteps extends Fragment {
 
 
         }
-    }
+    }*/
     @Override
     public void onResume() {
         Log.v("hhh34", "onResume:  " + playerPosition);
