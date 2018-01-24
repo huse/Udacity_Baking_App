@@ -37,7 +37,11 @@ public class BackingFragmentActivity extends AppCompatActivity {
             fragmentManager.beginTransaction().add(R.id.recipe_video_container, recipeVideoFragment).commit();
         }
     }
-
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+    }
    /* @Override
     public void onListItemClick(int clickedItemIndex) {
         Log.v("jjj", "clicked");

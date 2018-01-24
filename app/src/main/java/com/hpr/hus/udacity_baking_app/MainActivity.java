@@ -7,6 +7,7 @@ import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.hpr.hus.udacity_baking_app.adapter.RecipeAdapter;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Lis
 
         getIdlingResource();
         Timber.plant(new Timber.DebugTree());
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
        // mRecipeList = (RecyclerView) findViewById(R.id.rv_list_recipe);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
@@ -90,6 +94,13 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Lis
 
         Toast.makeText(this, "Position clicked = " + position, Toast.LENGTH_SHORT).show();
     }*/
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+    }
+
   @Override
   public void onSaveInstanceState(Bundle outState) {
       super.onSaveInstanceState(outState);

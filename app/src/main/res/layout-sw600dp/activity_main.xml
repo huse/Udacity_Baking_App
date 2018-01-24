@@ -2,6 +2,7 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/recipe_detail_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,9 +14,34 @@
     android:textColor="@color/colorAccent"
     android:textColorHighlight="@color/colorAccent"
     android:textColorHint="@color/colorAccent"
-    android:textColorLink="@color/colorAccent">
+    android:textColorLink="@color/colorAccent"
+    android:theme="@style/AppTheme"
+    >
 
+<!--Toolbar is from android website-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        parent="Theme.AppCompat.NoActionBar"
 
+        />
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@android:style/Widget.Holo.ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="false"
+        android:isScrollContainer="false"
+        android:scrollIndicators="top|bottom"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:scrollbarStyle="insideInset">
 
     <fragment
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -29,6 +55,7 @@
         android:textColorLink="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    </ScrollView>
 
 </LinearLayout>
 

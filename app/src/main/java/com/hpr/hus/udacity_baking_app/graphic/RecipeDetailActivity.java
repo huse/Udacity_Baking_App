@@ -77,7 +77,12 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesAd
 
 
     }
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
 
+    }
 
     @Override
     public void onSaveInstanceState(Bundle bundle) {

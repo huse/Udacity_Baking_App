@@ -287,18 +287,18 @@ public class DetailFragmentsSteps extends Fragment {
            // exoPlayer.release();
         }
     }
-    /*@Override
+    @Override
     public void onDetach() {
         super.onDetach();
         if (exoPlayer !=null) {
             exoPlayer.stop();
             exoPlayer.release();
         }
-    }*/
+    }
 
 
 
-  /*  @Override
+   @Override
     public void onStop() {
         super.onStop();
         Log.v("hhh36", "onStop: " + playerPosition);
@@ -306,7 +306,7 @@ public class DetailFragmentsSteps extends Fragment {
         if (exoPlayer !=null) {
             exoPlayer.stop();
             exoPlayer.release();
-            playerPosition = exoPlayer.getCurrentPosition();
+
 
         }
     }
@@ -322,7 +322,7 @@ public class DetailFragmentsSteps extends Fragment {
 
 
         }
-    }*/
+    }
     @Override
     public void onResume() {
         Log.v("hhh34", "onResume:  " + playerPosition);
