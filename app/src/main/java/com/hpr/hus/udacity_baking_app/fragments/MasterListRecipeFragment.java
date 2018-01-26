@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 public class MasterListRecipeFragment extends Fragment {
-
+// This class is only for practice and not used for project.
     OnRecipeClickListener mCallback;
 
     public MasterListRecipeFragment(){

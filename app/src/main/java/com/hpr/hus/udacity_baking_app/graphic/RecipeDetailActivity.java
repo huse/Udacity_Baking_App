@@ -58,7 +58,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesAd
             fragment.setArguments(selectedRecipeBundle);
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.FRAGMENT_CONTAINER_ONE, fragment).addToBackStack(RECIPE_STACK_DETAIL)
+                    .replace(R.id.FRAGMENT_CONTAINER_ONE, fragment)
                     .commit();
             Log.v("jjj", "RecipeDetailActivity 1"  + findViewById(R.id.recipe_detail_linear_layout).getTag());
 
@@ -133,7 +133,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesAd
         }
         else {
             fragmentManager.beginTransaction()
-                    .replace(R.id.FRAGMENT_CONTAINER_ONE, fragment).addToBackStack(STEP_STACK_DETAIL)
+                    .replace(R.id.FRAGMENT_CONTAINER_ONE, fragment).addToBackStack(RECIPE_STACK_DETAIL)
                     .commit();
         }
 
