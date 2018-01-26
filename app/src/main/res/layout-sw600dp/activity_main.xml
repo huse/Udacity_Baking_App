@@ -6,19 +6,15 @@
     android:id="@+id/recipe_detail_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
 
-
-    android:gravity="center_horizontal"
+    android:orientation="vertical"
     android:shadowColor="@color/colorAccent"
     android:textColor="@color/colorAccent"
     android:textColorHighlight="@color/colorAccent"
     android:textColorHint="@color/colorAccent"
     android:textColorLink="@color/colorAccent"
-    android:theme="@style/AppTheme"
-    >
+    android:theme="@style/AppTheme">
 
-<!--Toolbar is from android website-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
@@ -27,36 +23,18 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        parent="Theme.AppCompat.NoActionBar"
-
-        />
-
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@android:style/Widget.Holo.ScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:fillViewport="false"
-        android:isScrollContainer="false"
-        android:scrollIndicators="top|bottom"
-        android:scrollbarAlwaysDrawVerticalTrack="false"
-        android:scrollbarStyle="insideInset">
+        parent="Theme.AppCompat.NoActionBar"/>
 
     <fragment
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/recipe_fragment_main_activity"
         android:name="com.hpr.hus.udacity_baking_app.fragments.RecipeFragments"
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:shadowColor="@color/colorAccent"
         android:textColor="@color/colorAccent"
         android:textColorHighlight="@color/colorAccent"
         android:textColorHint="@color/colorAccent"
-        android:textColorLink="@color/colorAccent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    </ScrollView>
+        android:textColorLink="@color/colorAccent" />
 
 </LinearLayout>
-
-

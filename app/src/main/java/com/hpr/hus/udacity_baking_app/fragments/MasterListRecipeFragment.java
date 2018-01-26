@@ -34,21 +34,19 @@ public class MasterListRecipeFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        // This makes sure that the host activity has implemented the callback interface
-        // If not, it throws an exception
-        try {
+        /*try {
             mCallback = (OnRecipeClickListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnRecipeClickListener");
-        }
+        }*/
     }
     private static final List<Integer> all = new ArrayList<Integer>() {{
-        add(1);
+       /* add(1);
         add(2);
         add(3);
         add(4);
-        add(5);
+        add(5);*/
     }};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +55,7 @@ public class MasterListRecipeFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.master_frament_list, container, false);
 
         // Get a reference to the GridView in the fragment_master_list xml layout file
-        GridView gridView = (GridView) rootView.findViewById(R.id.master_fragment_recipe_grid_view);
+       // GridView gridView = (GridView) rootView.findViewById(R.id.master_fragment_recipe_grid_view);
 
         // Create the adapter
         // This adapter takes in the context and an ArrayList of ALL the image resources to display
@@ -67,13 +65,13 @@ public class MasterListRecipeFragment extends Fragment {
        // gridView.setAdapter(mAdapter);
 
         // Set a click listener on the gridView and trigger the callback onImageSelected when an item is clicked
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // Trigger the callback method and pass in the position that was clicked
                 mCallback.onRecipeSelected(position);
             }
-        });
+        });*/
        /* final TextView textViewtext = (TextView) rootView.findViewById( R.id.recipe_fragment_tv);
         RecyclerView recyclerView;
         recyclerView=(RecyclerView)  rootView.findViewById(R.id.recipe_recyclerview);

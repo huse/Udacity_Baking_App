@@ -1,10 +1,13 @@
 package com.hpr.hus.udacity_baking_app.graphic;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
+import com.hpr.hus.udacity_baking_app.MainActivity;
 import com.hpr.hus.udacity_baking_app.R;
 import com.hpr.hus.udacity_baking_app.adapter.RecipesAdapterDetail;
 import com.hpr.hus.udacity_baking_app.fragments.DetailFragmentsRecipes;
@@ -39,7 +42,10 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesAd
         Log.v("jjj", "RecipeDetailActivity 0"  + "onCreate");
 
         setContentView(R.layout.activity_detail_recipe);
-
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         if (bundle == null) {
 
             Bundle selectedRecipeBundle = getIntent().getExtras();
@@ -78,9 +84,21 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesAd
 
     }
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+               return true;
+    }
+
+
+    @Override
     public void onBackPressed()
     {
-        super.onBackPressed();
+        if (findViewById(R.id.recipe_detail_linear_layout).getTag()!=null && findViewById(R.id.recipe_detail_linear_layout).getTag().equals("tablet")) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }else{
+            super.onBackPressed();
+        }
 
     }
 

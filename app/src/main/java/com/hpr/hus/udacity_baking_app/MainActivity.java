@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Lis
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
        // mRecipeList = (RecyclerView) findViewById(R.id.rv_list_recipe);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
@@ -94,7 +96,11 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Lis
 
         Toast.makeText(this, "Position clicked = " + position, Toast.LENGTH_SHORT).show();
     }*/
-
+  @Override
+  public boolean onSupportNavigateUp() {
+      onBackPressed();
+      return true;
+  }
     @Override
     public void onBackPressed()
     {
